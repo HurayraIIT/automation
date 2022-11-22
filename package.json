@@ -1,0 +1,21 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "All things related to automation testing.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HurayraIIT/automation.git"
+  },
+  "keywords": [],
+  "author": "Abu Hurayra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HurayraIIT/automation/issues"
+  },
+  "homepage": "https://github.com/HurayraIIT/automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.28.0"
+  }
+}
