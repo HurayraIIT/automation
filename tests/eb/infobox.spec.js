@@ -84,7 +84,7 @@ test.describe("Test EB Infobox Demo Page.", () => {
     const FIRST_INFOBOX_HEADING = page.getByRole("heading", {
       name: "Marketing Course",
     });
-    await expect(FIRST_INFOBOX_HEADING).toBeVisible();
+    await expect.soft(FIRST_INFOBOX_HEADING).toBeVisible();
     const CSS_FIRST_INFOBOX_HEADING = {
       "font-size": "21px",
       "line-height": "27.3px",
@@ -101,7 +101,7 @@ test.describe("Test EB Infobox Demo Page.", () => {
         "Marketing course for beginners and those who are interested in exploring the fie"
       )
       .first();
-    await expect(FIRST_INFOBOX_CONTENT).toBeVisible();
+    await expect.soft(FIRST_INFOBOX_CONTENT).toBeVisible();
     const CSS_FIRST_INFOBOX_CONTENT = {
         "font-family": "\"DM Sans\"",
         "font-size": "14px",
@@ -115,7 +115,7 @@ test.describe("Test EB Infobox Demo Page.", () => {
     
     // Verify the first infobox button and its CSS
     const FIRST_INFOBOX_BUTTON = page.locator(".infobox-btn").first();
-    await expect(FIRST_INFOBOX_BUTTON).toBeVisible();
+    await expect.soft(FIRST_INFOBOX_BUTTON).toBeVisible();
     const CSS_FIRST_INFOBOX_BUTTON = {
         "font-family": "\"DM Sans\"",
         "font-size": "14px",

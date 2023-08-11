@@ -51,22 +51,22 @@ const faq = {
 test.describe("Elementor Widget - BetterDocs FAQ - Modern Layout", () => {
   test("Test if page is properly loaded.", async ({ page }) => {
     // Expects the URL to contain "betterdocs-faq-modern-layout".
-    await expect(page).toHaveURL(/.*betterdocs-faq-modern-layout/);
+    await expect.soft(page).toHaveURL(/.*betterdocs-faq-modern-layout/);
 
     // Expects the page to contain title "BetterDocs FAQ – Modern Layout – automation".
-    await expect(page).toHaveTitle(
+    await expect.soft(page).toHaveTitle(
       /.*BetterDocs FAQ – Modern Layout – automation/
     );
 
     // Expects the heading 'Elementor Widget - BetterDocs FAQ - Modern Layout' to be visible.
-    await expect(
+    await expect.soft(
       page.getByRole("heading", {
         name: "Elementor Widget - BetterDocs FAQ - Modern Layout",
       })
     ).toBeVisible();
 
     // Expects the FAQ Section Title to be visible
-    await expect(
+    await expect.soft(
       page.getByRole("heading", { name: "Commonly Asked Questions" })
     ).toBeVisible();
   });
@@ -97,18 +97,18 @@ test.describe("Elementor Widget - BetterDocs FAQ - Modern Layout", () => {
     });
 
     // Text Color
-    await expect(faq_section_title).toHaveCSS("color", "rgb(255, 0, 0)");
+    await expect.soft(faq_section_title).toHaveCSS("color", "rgb(255, 0, 0)");
 
     // Typography
-    await expect(faq_section_title).toHaveCSS("font-family", /Ubuntu/);
-    await expect(faq_section_title).toHaveCSS("font-size", "40px");
-    await expect(faq_section_title).toHaveCSS("font-weight", "400");
-    await expect(faq_section_title).toHaveCSS("text-transform", "uppercase");
-    await expect(faq_section_title).toHaveCSS("font-style", "italic");
-    await expect(faq_section_title).toHaveCSS("text-decoration", /overline/);
-    await expect(faq_section_title).toHaveCSS("line-height", "40px");
-    await expect(faq_section_title).toHaveCSS("letter-spacing", "0.4px");
-    await expect(faq_section_title).toHaveCSS("word-spacing", "4px");
+    await expect.soft(faq_section_title).toHaveCSS("font-family", /Ubuntu/);
+    await expect.soft(faq_section_title).toHaveCSS("font-size", "40px");
+    await expect.soft(faq_section_title).toHaveCSS("font-weight", "400");
+    await expect.soft(faq_section_title).toHaveCSS("text-transform", "uppercase");
+    await expect.soft(faq_section_title).toHaveCSS("font-style", "italic");
+    await expect.soft(faq_section_title).toHaveCSS("text-decoration", /overline/);
+    await expect.soft(faq_section_title).toHaveCSS("line-height", "40px");
+    await expect.soft(faq_section_title).toHaveCSS("letter-spacing", "0.4px");
+    await expect.soft(faq_section_title).toHaveCSS("word-spacing", "4px");
   });
 
   test("Test Style: FAQ List controls should be applied.", async ({ page }) => {
@@ -126,17 +126,17 @@ border-color: #58C467;
 background-color: #DDDDDD;
 */
 
-    await expect(betterdocs_faq_post).toHaveCSS("padding", "21px");
-    await expect(betterdocs_faq_post).toHaveCSS("margin", "22px");
+    await expect.soft(betterdocs_faq_post).toHaveCSS("padding", "21px");
+    await expect.soft(betterdocs_faq_post).toHaveCSS("margin", "22px");
 
     // Border Styles
-    await expect(betterdocs_faq_post).toHaveCSS("border-style", /solid/);
-    await expect(betterdocs_faq_post).toHaveCSS("border-width", "3px");
-    await expect(betterdocs_faq_post).toHaveCSS(
+    await expect.soft(betterdocs_faq_post).toHaveCSS("border-style", /solid/);
+    await expect.soft(betterdocs_faq_post).toHaveCSS("border-width", "3px");
+    await expect.soft(betterdocs_faq_post).toHaveCSS(
       "border-color",
       "rgba(88, 196, 103, 0.92)"
     );
-    await expect(betterdocs_faq_post).toHaveCSS(
+    await expect.soft(betterdocs_faq_post).toHaveCSS(
       "background-color",
       "rgba(221, 221, 221, 0.96)"
     );
@@ -144,13 +144,13 @@ background-color: #DDDDDD;
     // Border Hover Styles
     await betterdocs_faq_post.hover();
     await page.waitForTimeout(100);
-    await expect(betterdocs_faq_post).toHaveCSS("border-style", /dashed/);
-    await expect(betterdocs_faq_post).toHaveCSS("border-width", "4px");
-    await expect(betterdocs_faq_post).toHaveCSS(
+    await expect.soft(betterdocs_faq_post).toHaveCSS("border-style", /dashed/);
+    await expect.soft(betterdocs_faq_post).toHaveCSS("border-width", "4px");
+    await expect.soft(betterdocs_faq_post).toHaveCSS(
       "border-color",
       "rgba(226, 84, 84, 0.92)"
     );
-    await expect(betterdocs_faq_post).toHaveCSS(
+    await expect.soft(betterdocs_faq_post).toHaveCSS(
       "background-color",
       "rgba(205, 153, 206, 0.85)"
     );
@@ -172,19 +172,19 @@ letter-spacing: 0.3px;
 word-spacing: 2px;
 color: #0000FF; rgba(0, 0, 255, 1)
       */
-    await expect(betterdocs_faq_post_name).toHaveCSS("font-family", /Tahoma/);
-    await expect(betterdocs_faq_post_name).toHaveCSS("font-size", "18px");
-    await expect(betterdocs_faq_post_name).toHaveCSS("font-weight", "500");
-    await expect(betterdocs_faq_post_name).toHaveCSS(
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-family", /Tahoma/);
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-size", "18px");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-weight", "500");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS(
       "text-transform",
       "capitalize"
     );
-    await expect(betterdocs_faq_post_name).toHaveCSS("font-style", "normal");
-    await expect(betterdocs_faq_post_name).toHaveCSS("text-decoration", "none solid rgb(0, 0, 255)");
-    await expect(betterdocs_faq_post_name).toHaveCSS("line-height", "19px");
-    await expect(betterdocs_faq_post_name).toHaveCSS("letter-spacing", "0.3px");
-    await expect(betterdocs_faq_post_name).toHaveCSS("word-spacing", "2px");
-    await expect(betterdocs_faq_post_name).toHaveCSS("color", "rgb(0, 0, 255)");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-style", "normal");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("text-decoration", "none solid rgb(0, 0, 255)");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("line-height", "19px");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("letter-spacing", "0.3px");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("word-spacing", "2px");
+    await expect.soft(betterdocs_faq_post_name).toHaveCSS("color", "rgb(0, 0, 255)");
   });
 
   test("Test Style: FAQ List Title controls should be applied.", async ({
