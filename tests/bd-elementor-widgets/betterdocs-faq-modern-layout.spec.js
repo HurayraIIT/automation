@@ -180,7 +180,7 @@ color: #0000FF; rgba(0, 0, 255, 1)
       "capitalize"
     );
     await expect(betterdocs_faq_post_name).toHaveCSS("font-style", "normal");
-    await expect(betterdocs_faq_post_name).toHaveCSS("text-decoration", /none/);
+    await expect(betterdocs_faq_post_name).toHaveCSS("text-decoration", "none solid rgb(0, 0, 255)");
     await expect(betterdocs_faq_post_name).toHaveCSS("line-height", "19px");
     await expect(betterdocs_faq_post_name).toHaveCSS("letter-spacing", "0.3px");
     await expect(betterdocs_faq_post_name).toHaveCSS("word-spacing", "2px");
