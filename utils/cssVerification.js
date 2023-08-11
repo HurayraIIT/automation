@@ -2,7 +2,9 @@ import { expect } from "@playwright/test";
 
 export default async function verifyCss(selector, cssData) {
   console.log(`-- Verifying CSS For [${selector}] --`);
-  console.log(`---- ${cssData}`);
+  
+  const data = JSON.stringify(cssData);
+  console.log(`---- ${data}`);
 
   for (const property in cssData) {
     if (cssData.hasOwnProperty(property)) {
