@@ -71,26 +71,10 @@ test.describe("Elementor Widget - BetterDocs FAQ - Modern Layout", () => {
     ).toBeVisible();
   });
 
-  test("Test Layout options: All faq should be displayed properly.", async ({
-    page,
-  }) => {});
 
   test("Test Style: FAQ Section Title controls should be applied.", async ({
     page,
   }) => {
-    /* FAQ Section Title
-    // 
-      color: #FF0000;
-      font-family: "Ubuntu";
-      font-size: 40px;
-      font-weight: 400;
-      text-transform: uppercase;
-      font-style: italic;
-      text-decoration: overline;
-      line-height: 40px;
-      letter-spacing: 0.4px;
-      word-spacing: 4px;
-    */
 
     const faq_section_title = page.getByRole("heading", {
       name: "Commonly Asked Questions",
@@ -117,15 +101,6 @@ test.describe("Elementor Widget - BetterDocs FAQ - Modern Layout", () => {
       .locator(".betterdocs-faq-post-name")
       .first();
 
-    /*
-    padding: 21px 21px 21px 21px;
-margin: 22px 22px 22px 22px;
-border-style: solid;
-border-width: 3px 3px 3px 3px;
-border-color: #58C467;
-background-color: #DDDDDD;
-*/
-
     await expect.soft(betterdocs_faq_post).toHaveCSS("padding", "21px");
     await expect.soft(betterdocs_faq_post).toHaveCSS("margin", "22px");
 
@@ -144,6 +119,7 @@ background-color: #DDDDDD;
     // Border Hover Styles
     await betterdocs_faq_post.hover();
     await page.waitForTimeout(100);
+
     await expect.soft(betterdocs_faq_post).toHaveCSS("border-style", /dashed/);
     await expect.soft(betterdocs_faq_post).toHaveCSS("border-width", "4px");
     await expect.soft(betterdocs_faq_post).toHaveCSS(
@@ -160,18 +136,6 @@ background-color: #DDDDDD;
       .click();
     await page.waitForTimeout(100);
 
-    /*Typography
-font-family: "Tahoma", Sans-serif;
-font-size: 18px;
-font-weight: 500;
-text-transform: capitalize;
-font-style: normal;
-text-decoration: none;
-line-height: 19px;
-letter-spacing: 0.3px;
-word-spacing: 2px;
-color: #0000FF; rgba(0, 0, 255, 1)
-      */
     await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-family", /Tahoma/);
     await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-size", "18px");
     await expect.soft(betterdocs_faq_post_name).toHaveCSS("font-weight", "500");
@@ -186,44 +150,4 @@ color: #0000FF; rgba(0, 0, 255, 1)
     await expect.soft(betterdocs_faq_post_name).toHaveCSS("word-spacing", "2px");
     await expect.soft(betterdocs_faq_post_name).toHaveCSS("color", "rgb(0, 0, 255)");
   });
-
-  test("Test Style: FAQ List Title controls should be applied.", async ({
-    page,
-  }) => {
-    // Title Color - rgba(244, 0, 252, 1)
-    // Title hover color - rgba(56, 207, 42, 1)
-    /* Typography
-
-      }
-    */
-  });
-
-  test("Test Style: FAQ Content controls should be applied.", async ({
-    page,
-  }) => {});
-
-  test("Test Style: FAQ List Icon controls should be applied.", async ({
-    page,
-  }) => {});
-
-  test("Test Style: All FAQ Section Title controls should be applied.", async ({
-    page,
-  }) => {});
-
-  test("Test Advanced Tab: Layout controls should be applied.", async ({
-    page,
-  }) => {});
-
-  /* CONTENT TAB */
-
-  // Verify that the FAQ layout is modern layout with "data-widget_type="betterdocs-faq.default""
-
-  // Verify that the FAQ Section title is "Commonly Asked Questions"
-
-  // Verify that the FAQ Groups are
-  // * "FAQ For Elementor Widget 01"
-  // * "FAQ 02 For Elementor Widget"
-  // * "03 FAQ For Elementor Widget"
-
-  /* STYLE TAB */
 });

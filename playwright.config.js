@@ -36,6 +36,7 @@ export default defineConfig({
     extraHTTPHeaders: {
       'X-QA-TEST': 'Abu Hurayra',
     },
+    browserName: "chromium",
   },
 
   /* Configure projects for major browsers */
