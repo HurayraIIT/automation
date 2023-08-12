@@ -5,6 +5,8 @@ import verifyCss from "../../utils/cssVerification.js";
 const INFOBOX_DEMO_PAGE_URL = "https://essential-blocks.com/demo/infobox/";
 const INFOBOX_DEMO_PAGE_TITLE =
   "Infobox | Essential Gutenberg Blocks for WordPress";
+const INFOBOX_DOC_PAGE_URL = "https://essential-blocks.com/docs/infobox/";
+const INFOBOX_DOC_PAGE_TITLE = "EB Infobox - Essential Blocks";
 
 test.beforeEach(async ({ page }) => {
   await page.goto(INFOBOX_DEMO_PAGE_URL);
@@ -21,6 +23,24 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Test EB Infobox Demo Page.", () => {
+  test("Test Infobox documentation should be present.", async ({ page }) => {
+    // Check doc page link
+    const DOC_PAGE_LINK = page.getByRole('link', { name: /Read Documentation/ });
+    await DOC_PAGE_LINK.scrollIntoViewIfNeeded();
+    await expect.soft(DOC_PAGE_LINK).toHaveAttribute("target", /_blank/);
+    await expect.soft(DOC_PAGE_LINK).toHaveAttribute("href", INFOBOX_DOC_PAGE_URL);
+    await expect.soft(DOC_PAGE_LINK).toHaveClass(/eb-button-anchor/);
+
+    // Check if doc page is loading
+    await page.goto(INFOBOX_DOC_PAGE_URL);
+    const ADVANCED_SEARCH_HEADING = page.getByRole("heading", { name: /Essential Blocks Documentation/ });
+    await expect.soft(ADVANCED_SEARCH_HEADING).toBeVisible();
+
+    const DOC_HEADING = page.locator(".betterdocs-entry-title");
+    await DOC_HEADING.scrollIntoViewIfNeeded();
+    await expect.soft(DOC_HEADING).toHaveText(/EB Infobox/);
+  });
+
   test("Test Infobox Preset 1.", async ({ page }) => {
     // Scroll to the preset 1 section
     const PRESET_1_HEADING = page.getByRole("heading", {
