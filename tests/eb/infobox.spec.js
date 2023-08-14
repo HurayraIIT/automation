@@ -135,7 +135,7 @@ test.describe("Test EB Infobox Demo Page.", () => {
     await verifyCss(FIRST_INFOBOX_CONTENT, CSS_FIRST_INFOBOX_CONTENT);
     
     // Verify the first infobox button and its CSS
-    const FIRST_INFOBOX_BUTTON = page.locator(".infobox-btn").first();
+    const FIRST_INFOBOX_BUTTON = page.locator(".eb-infobox-46vc4yo> .infobox-wrapper-inner > .contents-wrapper > .eb-infobox-btn-wrapper > .infobox-btn");
     await expect.soft(FIRST_INFOBOX_BUTTON).toBeVisible();
     const CSS_FIRST_INFOBOX_BUTTON = {
         "font-family": '"DM Sans"',
