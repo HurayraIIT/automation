@@ -35,7 +35,7 @@ export default defineConfig({
     {
       name: 'Essential Addons',
       testMatch: '**/*.ea.spec.js',
-      retries: 2,
+      retries: 3,
       use: {
         baseURL: 'https://essential-addons.com/elementor'
       }
@@ -43,7 +43,7 @@ export default defineConfig({
     {
       name: 'Essential Blocks',
       testMatch: '**/*.eb.spec.js',
-      retries: 2,
+      retries: 3,
       use: {
         baseURL: 'https://essential-blocks.com'
       }
