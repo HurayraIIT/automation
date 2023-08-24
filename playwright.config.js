@@ -28,6 +28,10 @@ export default defineConfig({
       'X-QA-TEST': 'Abu Hurayra',
     },
     browserName: 'chromium',
+    // viewport: {
+    //   width: 1920,
+    //   height: 1080
+    // }
   },
 
   /* Configure projects */
@@ -46,6 +50,14 @@ export default defineConfig({
       retries: 3,
       use: {
         baseURL: 'https://essential-blocks.com'
+      }
+    },
+    {
+      name: 'BetterDocs',
+      testMatch: '**/*.bd.spec.js',
+      retries: 3,
+      use: {
+        baseURL: 'https://automation.s3-tastewp.com'
       }
     },
   ],
