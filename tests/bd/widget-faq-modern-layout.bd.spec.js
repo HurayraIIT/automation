@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 import verifyCss from "../../utils/cssVerification.js";
 
 const PAGE_URL = "https://automation.s3-tastewp.com/betterdocs-elementor-widgets/betterdocs-faq-modern-layout/";
-const PAGE_TITLE = "BetterDocs FAQ Modern Layout – Automation";
+const PAGE_TITLE = "BetterDocs FAQ Modern Layout – HurayraIIT";
 
 test.beforeEach(async ({ page }) => {
   await page.goto(PAGE_URL);
