@@ -130,5 +130,6 @@ dist
 .pnp.*
 /test-results/
 /playwright-report/
+/blob-report/
 /playwright/.cache/
 .DS_Store

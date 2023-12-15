@@ -1,16 +1,16 @@
 {
-  "name": "automation",
+  "name": "wpdev-automation",
   "version": "1.0.0",
-  "description": "Automation Testing.",
+  "description": "Automation Tests Using Playwright JS.",
   "main": "index.js",
-  "type": "module",
   "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Abu Hurayra",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.36.2",
-    "playwright-slack-report": "^1.1.21"
+    "@faker-js/faker": "^8.3.1",
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.0"
   },
   "dependencies": {
     "dotenv": "^16.3.1"
