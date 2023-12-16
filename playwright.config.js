@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   testDir: "./tests",
-  fullyParallel: true,
+  // fullyParallel: true,
 
   reporter: [["list"], ["html"]],
 
@@ -18,6 +18,6 @@ export default defineConfig({
     trace: "retain-on-failure",
     extraHTTPHeaders: {
       "X-QA-TEST": "Abu Hurayra",
-    }
-  }
+    },
+  },
 });
