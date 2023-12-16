@@ -5,10 +5,10 @@ import { config } from "dotenv";
 config();
 
 export default defineConfig({
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 4 : undefined,
 
   testDir: "./tests",
-  // fullyParallel: true,
+  fullyParallel: true,
 
   reporter: [["list"], ["html"]],
 
