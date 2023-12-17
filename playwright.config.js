@@ -5,7 +5,7 @@ import { config } from "dotenv";
 config();
 
 export default defineConfig({
-  workers: process.env.CI ? 4 : undefined,
+  workers: process.env.CI ? 6 : undefined,
 
   testDir: "./tests",
   fullyParallel: true,
