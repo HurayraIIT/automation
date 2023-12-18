@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-let slug = "/eb/parallax-slider/";
+let slug = "/eb/parallax-slider";
 
 test("Parallax Slider Should load.", async ({ page }) => {
   await page.goto(slug);
