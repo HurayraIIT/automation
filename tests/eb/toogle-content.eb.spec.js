@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
   await page.waitForLoadState("networkidle");
 });
 
-test.describe("Rounded Switch 1", () => {
+test.describe("First Toggle Content", () => {
     let section_heading = "Toggle Content Heading 231218";
 
     let toggle_class = ".eb-toggle-20e5ite";
