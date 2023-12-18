@@ -79,6 +79,7 @@ test.describe("First Filterable Gallery", () => {
     await expect(page.getByText("Item content1")).not.toBeVisible();
   });
 
+  // https://trello.com/c/uSSy7Sqo
   test("Full image action (link) should work.", async ({ page }) => {
     await page.getByText(section_heading).scrollIntoViewIfNeeded();
     await page.waitForTimeout(200);

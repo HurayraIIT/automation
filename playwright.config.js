@@ -5,7 +5,7 @@ import { config } from "dotenv";
 config();
 
 export default defineConfig({
-  workers: 8,
+  workers: 4,
 
   testDir: "./tests",
   fullyParallel: true,
