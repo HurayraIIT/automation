@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-let slug = "/eb/advanced-heading/";
+let slug = "/eb/advanced-heading";
 
 test("Advanced heading preset 3 should load properly.", async ({ page }) => {
   await page.goto(slug);

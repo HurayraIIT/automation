@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-let slug = "/eb/advanced-tabs/";
+let slug = "/eb/advanced-tabs";
 
 test("Advanced tabs 2nd tab should be open by default.", async ({ page }) => {
   // Navigate to the section

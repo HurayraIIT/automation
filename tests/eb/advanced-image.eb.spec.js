@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-let slug = "/eb/advanced-image/";
+let slug = "/eb/advanced-image";
 
 test("Advanced image link should work.", async ({ page }) => {
   // Navigate to the section
