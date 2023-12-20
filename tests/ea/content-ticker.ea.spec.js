@@ -18,29 +18,29 @@ test.describe("Test content ticker.", () => {
 
     // The items should be visible
     await page.goto('https://hurayra.resecured.io/ea/content-ticker/');
-    await expect(page.getByRole('heading', { name: 'Content Ticker Heading' })).toBeVisible();
+    await expect(page.getByRole("heading", { name: section_top_heading })).toBeVisible();
     await expect(page.getByText('Trending Today231220')).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Post One' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post One 231219' })).toBeVisible();
     await expect(page.getByLabel('Next slide')).toBeVisible();
 
     // all slides should be visible
     await page.getByLabel('Next slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post Two' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post Two 231219' })).toBeVisible();
     await page.getByLabel('Next slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post Three' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post Three 231219' })).toBeVisible();
     await page.getByLabel('Next slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post Four' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post Four 231219' })).toBeVisible();
     await page.getByLabel('Previous slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post Three' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post Three 231219' })).toBeVisible();
     await page.getByLabel('Previous slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post Two' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post Two 231219' })).toBeVisible();
     await page.getByLabel('Previous slide').click();
     await page.waitForTimeout(100);
-    await expect(page.getByRole('link', { name: 'Post One' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Post One 231219' })).toBeVisible();
   });
 });
