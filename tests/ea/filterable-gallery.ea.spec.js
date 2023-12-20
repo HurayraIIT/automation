@@ -18,8 +18,8 @@ test.describe("First Filterable Gallery", () => {
 
     // Filter names should load
     await expect(page.getByText("All", { exact: true })).toBeVisible();
-    await expect(page.getByText("Odd")).toBeVisible();
-    await expect(page.getByText("Even")).toBeVisible();
+    await expect(page.getByText("Odd231218")).toBeVisible();
+    await expect(page.getByText("Even231218")).toBeVisible();
 
     // Section: All - Should load
     await expect(page.getByRole("link", { name: "one" })).toBeVisible();
@@ -41,7 +41,7 @@ test.describe("First Filterable Gallery", () => {
     await expect(page.getByRole("link", { name: "Load More" })).toBeVisible();
 
     // Section: Odd - Should load
-    await page.getByText("Odd").click();
+    await page.getByText("Odd231218").click();
 
     await expect(page.getByRole("link", { name: "one" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Item1" })).toBeVisible();
@@ -61,7 +61,7 @@ test.describe("First Filterable Gallery", () => {
 
     // Section: Even - Should load
 
-    await page.getByText("Even").click();
+    await page.getByText("Even231218").click();
     await expect(page.getByRole("link", { name: "two" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Item2" })).toBeVisible();
     await expect(page.getByText("Item content2")).toBeVisible();
@@ -102,7 +102,7 @@ test.describe("First Filterable Gallery", () => {
     await page.waitForTimeout(200);
 
     // Click test - ODD
-    await page.getByText("Odd").click();
+    await page.getByText("Odd231218").click();
     await page.getByRole("link", { name: "five" }).click();
     await expect(page).toHaveURL(/clicked/);
     await expect(page.getByText("page loaded successfully!")).toBeVisible();
@@ -112,7 +112,7 @@ test.describe("First Filterable Gallery", () => {
     await page.waitForTimeout(200);
 
     // Click test - EVEN
-    await page.getByText("Even").click();
+    await page.getByText("Even231218").click();
     await page.getByRole("link", { name: "six" }).click();
     await expect(page).toHaveURL(/clicked/);
     await expect(page.getByText("page loaded successfully!")).toBeVisible();
