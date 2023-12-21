@@ -33,35 +33,36 @@ test.describe("Test Smart Post List", () => {
     await expect(page.getByRole("link", { name: "Post Three" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Post Four" })).toBeVisible();
 
-    await expect(page.getByRole("img", { name: "five" })).not.toBeVisible();
-    await expect(page.getByText("DONOTDELETEPost Five 231221")).not.toBeVisible();
-    await expect(page.getByText("December 5, 2023")).not.toBeVisible();
+    await expect(page.getByRole("img", { name: "five" })).not.toBeInViewport();
+    await expect(page.getByText("DONOTDELETEPost Five 231221")).not.toBeInViewport();
+    await expect(page.getByText("December 5, 2023")).not.toBeInViewport();
 
-    await expect(page.getByRole("img", { name: "six" })).not.toBeVisible();
-    await expect(page.getByText("DONOTDELETEPost Six 231221")).not.toBeVisible();
-    await expect(page.getByText("December 6, 2023")).not.toBeVisible();
+    await expect(page.getByRole("img", { name: "six" })).not.toBeInViewport();
+    await expect(page.getByText("DONOTDELETEPost Six 231221")).not.toBeInViewport();
+    await expect(page.getByText("December 6, 2023")).not.toBeInViewport();
+    await expect(page.locator("#post-nav-next-4280cbc")).toBeVisible();
 
     // Section: Even231221 - Should load
-    await page.locator("#post-nav-next-4280cbc").click();
-    await expect(page.locator("#post-nav-next-4280cbc")).toBeVisible();
     await page.getByRole("link", { name: "Even231221" }).click();
+    await page.waitForTimeout(400);
     await expect(page.getByRole("img", { name: "six" })).toBeVisible();
     await expect(page.getByText("DONOTDELETEPost Six 231221")).toBeVisible();
     await expect(page.getByText("December 6, 2023")).toBeVisible();
 
-    await expect(page.getByRole("img", { name: "five" })).not.toBeVisible();
-    await expect(page.getByText("DONOTDELETEPost Five 231221")).not.toBeVisible();
-    await expect(page.getByText("December 5, 2023")).not.toBeVisible();
+    await expect(page.getByRole("img", { name: "five" })).not.toBeInViewport();
+    await expect(page.getByText("DONOTDELETEPost Five 231221")).not.toBeInViewport();
+    await expect(page.getByText("December 5, 2023")).not.toBeInViewport();
 
     // Section: Odd231221 - Should load
     await page.getByRole("link", { name: "Odd231221" }).click();
+    await page.waitForTimeout(400);
     await expect(page.getByRole("img", { name: "five" })).toBeVisible();
     await expect(page.getByText("DONOTDELETEPost Five 231221")).toBeVisible();
     await expect(page.getByText("December 5, 2023")).toBeVisible();
 
-    await expect(page.getByRole("img", { name: "six" })).not.toBeVisible();
-    await expect(page.getByText("DONOTDELETEPost Six 231221")).not.toBeVisible();
-    await expect(page.getByText("December 6, 2023")).not.toBeVisible();
+    await expect(page.getByRole("img", { name: "six" })).not.toBeInViewport();
+    await expect(page.getByText("DONOTDELETEPost Six 231221")).not.toBeInViewport();
+    await expect(page.getByText("December 6, 2023")).not.toBeInViewport();
   });
 
   test("Item links should work.", async ({ page }) => {
