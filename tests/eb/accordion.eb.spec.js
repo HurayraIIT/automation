@@ -27,6 +27,7 @@ test("Accordion click on 1st item should hide others.", async ({ page }) => {
   await page.getByText("Accordion Default Open For 2nd Item").scrollIntoViewIfNeeded();
 
   // click on the 1st item
+  await page.waitForTimeout(500); // fix flakiness
   await page.getByText("This is question one.").click();
   await page.waitForTimeout(200);
 
