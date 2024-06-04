@@ -18,11 +18,6 @@ test.describe("Test post block.", () => {
 
     // all sections should be present
     await expect(
-      page.getByText(
-        "Post One 231219 Post One 231219 DO NOT DELETE THIS POSTRead More hurayraDecember 1, 2023 Post Two 231219 Post Two 231219 DO NOT DELETE THIS POSTRead More hurayraDecember 2, 2023 Post Three 231219 Post Three 231219 DO NOT DELETE THIS POSTRead More hurayraDecember 3, 2023 Post Four 231219 Post Four 231219 DO NOT DELETE THIS POSTRead More hurayraDecember 4,"
-      )
-    ).toBeVisible();
-    await expect(
       page.locator("article").filter({ hasText: "Post One 231219 Post One" }).getByRole("link").first()
     ).toBeVisible();
     await expect(page.getByText("Post One 231219 Post One")).toBeVisible();

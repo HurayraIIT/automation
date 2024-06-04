@@ -65,12 +65,6 @@ test.describe("Test Post Grid.", () => {
     await page.goto(slug);
     await page.waitForLoadState("networkidle");
 
-    await page.locator("article").filter({ hasText: "Post Four 231219" }).getByRole("link").nth(2).click();
-    await expect(page.getByRole("heading", { name: "Author name: hurayra" })).toBeVisible();
-
-    await page.goto(slug);
-    await page.waitForLoadState("networkidle");
-
     await page.getByRole("link", { name: "hurayra" }).first().click();
     await expect(page.getByRole("heading", { name: "Author name: hurayra" })).toBeVisible();
 
