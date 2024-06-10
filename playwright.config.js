@@ -1,23 +1,36 @@
 // @ts-check
 import { defineConfig, devices } from "@playwright/test";
 import { config } from "dotenv";
+import dns from "dns";
+
+dns.setDefaultResultOrder("ipv4first");
 
 config();
 
 export default defineConfig({
-  workers: 4,
+  workers: 6,
   retries: 2,
   testDir: "./tests",
+  globalSetup: "global-setup.js",
   fullyParallel: true,
 
   reporter: [["list"], ["html"]],
 
   use: {
-    baseURL: process.env.URL,
-    ignoreHTTPSErrors: true,
+    baseURL: process.env.WP_BASE_URL,
+
+    screenshot: "only-on-failure",
     trace: "retain-on-failure",
-    extraHTTPHeaders: {
-      "X-QA-TEST": "Abu Hurayra",
-    },
+    video: "retain-on-failure",
+
+    ignoreHTTPSErrors: true,
+    //extraHTTPHeaders: {
+    //  "Y-QA-TEST": "Abu Hurayra",
+    //},
+    projects: [
+      {
+        use: { ...devices["Desktop Firefox"] },
+      },
+    ],
   },
 });
