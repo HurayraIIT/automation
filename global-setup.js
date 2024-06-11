@@ -14,7 +14,6 @@ async function globalSetup() {
         }
     });
 
-    
     await requestUtils.setupRest();
     await requestContext.dispose();
 };

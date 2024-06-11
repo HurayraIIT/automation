@@ -8,7 +8,7 @@ dns.setDefaultResultOrder("ipv4first");
 config();
 
 export default defineConfig({
-  workers: 6,
+  workers: 8,
   retries: 2,
   testDir: "./tests",
   globalSetup: "global-setup.js",
