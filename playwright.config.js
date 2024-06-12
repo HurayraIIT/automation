@@ -24,13 +24,5 @@ export default defineConfig({
     video: "retain-on-failure",
 
     ignoreHTTPSErrors: true,
-    //extraHTTPHeaders: {
-    //  "Y-QA-TEST": "Abu Hurayra",
-    //},
-    projects: [
-      {
-        use: { ...devices["Desktop Firefox"] },
-      },
-    ],
   },
 });
