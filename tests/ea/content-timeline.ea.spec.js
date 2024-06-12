@@ -17,7 +17,7 @@ test.describe("Test content timeline.", () => {
     await page.waitForTimeout(200);
 
     // The items should be visible
-    await page.goto("https://hurayra.resecured.io/ea/content-timeline/");
+    await page.goto(slug);
     await expect(page.getByRole("heading", { name: "Content Timeline" })).toBeVisible();
     await expect(page.getByText("Post One 231219Post One")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Post One 231219" })).toBeVisible();

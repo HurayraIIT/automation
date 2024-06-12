@@ -17,7 +17,7 @@ test.describe("Test Post Grid.", () => {
     await page.waitForTimeout(200);
 
     // The items should be visible
-    await page.goto("https://hurayra.resecured.io/ea/post-grid/");
+    await page.goto(slug);
     await expect(page.getByRole("heading", { name: section_top_heading })).toBeVisible();
     await expect(
       page.locator("article").filter({ hasText: "Post Four 231219" }).getByRole("link").first()

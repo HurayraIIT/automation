@@ -17,7 +17,7 @@ test.describe("Test content ticker.", () => {
     await page.waitForTimeout(200);
 
     // The items should be visible
-    await page.goto('https://hurayra.resecured.io/ea/content-ticker/');
+    await page.goto(slug);
     await expect(page.getByRole("heading", { name: section_top_heading })).toBeVisible();
     await expect(page.getByText('Trending Today231220')).toBeVisible();
     await expect(page.getByRole('link', { name: 'Post One 231219' })).toBeVisible();
