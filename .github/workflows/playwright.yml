@@ -37,3 +37,12 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Publish HTML report to hurayraiit.github.io
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        publish_dir: playwright-report/ 
+        keep_files: true 
+        user_name: 'github-actions[bot]' 
+        user_email: 'github-actions[bot]@users.noreply.github.com' 
