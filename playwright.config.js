@@ -27,8 +27,6 @@ export default defineConfig({
             ],
           },
         ],
-        ["dot"],
-        ["list"],
         ["html"],
       ]
     : [["dot"], ["list"], ["html"]],

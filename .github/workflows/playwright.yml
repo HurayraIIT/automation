@@ -31,7 +31,7 @@ jobs:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: echo "STORESEO_URL=${STORESEO_URL}" >> .env && echo "STORESEO_PASSWORD=${STORESEO_PASSWORD}" >> .env && echo "WP_BASE_URL=${WP_BASE_URL}" >> .env && echo "WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}" >> .env && echo "WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}" >> .env && echo "WP_AUTH_STORAGE=${WP_AUTH_STORAGE}" >> .env && echo "WP_CUSTOMER_USERNAME=${WP_CUSTOMER_USERNAME}" >> .env && echo "WP_CUSTOMER_PASSWORD=${WP_CUSTOMER_PASSWORD}" >> .env && echo "WP_CUSTOMER_SESSION=${WP_CUSTOMER_SESSION}" >> .env && echo "SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}" >> .env
     - name: Run Playwright tests
-      run: npx playwright test --reporter=html
+      run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
