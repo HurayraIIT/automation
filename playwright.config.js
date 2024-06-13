@@ -14,7 +14,7 @@ export default defineConfig({
   globalSetup: "global-setup.js",
   fullyParallel: true,
 
-  reporter: [["list"], ["html"]],
+  reporter: [["playwright-json-summary-reporter"],["list"], ["html"]],
 
   use: {
     baseURL: process.env.WP_BASE_URL,

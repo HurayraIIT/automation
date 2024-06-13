@@ -6,7 +6,7 @@ on:
     branches: [ main, master ]
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -28,9 +28,10 @@ jobs:
         WP_CUSTOMER_USERNAME: ${{ secrets.WP_CUSTOMER_USERNAME }}
         WP_CUSTOMER_PASSWORD: ${{ secrets.WP_CUSTOMER_PASSWORD }}
         WP_CUSTOMER_SESSION: ${{ secrets.WP_CUSTOMER_SESSION }}
-      run: echo "STORESEO_URL=${STORESEO_URL}" >> .env && echo "STORESEO_PASSWORD=${STORESEO_PASSWORD}" >> .env && echo "WP_BASE_URL=${WP_BASE_URL}" >> .env && echo "WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}" >> .env && echo "WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}" >> .env && echo "WP_AUTH_STORAGE=${WP_AUTH_STORAGE}" >> .env && echo "WP_CUSTOMER_USERNAME=${WP_CUSTOMER_USERNAME}" >> .env && echo "WP_CUSTOMER_PASSWORD=${WP_CUSTOMER_PASSWORD}" >> .env && echo "WP_CUSTOMER_SESSION=${WP_CUSTOMER_SESSION}" >> .env
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: echo "STORESEO_URL=${STORESEO_URL}" >> .env && echo "STORESEO_PASSWORD=${STORESEO_PASSWORD}" >> .env && echo "WP_BASE_URL=${WP_BASE_URL}" >> .env && echo "WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}" >> .env && echo "WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}" >> .env && echo "WP_AUTH_STORAGE=${WP_AUTH_STORAGE}" >> .env && echo "WP_CUSTOMER_USERNAME=${WP_CUSTOMER_USERNAME}" >> .env && echo "WP_CUSTOMER_PASSWORD=${WP_CUSTOMER_PASSWORD}" >> .env && echo "WP_CUSTOMER_SESSION=${WP_CUSTOMER_SESSION}" >> .env && echo "SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}" >> .env
     - name: Run Playwright tests
-      run: npx playwright test tests/storeseo/ --reporter=html
+      run: npx playwright test --reporter=html
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
@@ -46,3 +47,71 @@ jobs:
         keep_files: true 
         user_name: 'github-actions[bot]' 
         user_email: 'github-actions[bot]@users.noreply.github.com' 
+
+    - name: Read Summary Report to Get Test Results
+      if: always()
+      run: |
+        STATUS=$(cat ./summary.json | jq -r '.status')
+        echo "STATUS=$STATUS" >> $GITHUB_ENV 
+        PASSED=$(cat ./summary.json | jq -r '.passed[]' | tr '\n' ' ')
+        echo "PASSED=$PASSED" >> $GITHUB_ENV 
+        TIMEOUT=$(cat ./summary.json | jq -r '.timedOut[]' | tr '\n' ' ' | sed 's/ /--->TIMEOUT /g')
+        FAILURES=$(cat ./summary.json | jq -r '.failed[]' | tr '\n' ' ')
+        FAILURES+=$TIMEOUT
+        echo "FAILURES=$FAILURES" >> $GITHUB_ENV
+        
+    - name: Send Slack Notification
+      if: always()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: repo,eventName,workflow,job,took
+        custom_payload: |
+          {
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : 'danger',
+              title: `Playwright Automation Results :test_tube:`,
+              fields: [{
+                title: 'Site Under Test',
+                value: '${{ secrets.WP_BASE_URL }}',
+                short: true
+              },
+              {
+                title: 'Triggered By',
+                value: [{'origin': 'pull_request', 'new': 'Pull Request'}, {'origin': 'schedule', 'new': 'Schedule'}, {'origin': 'repository_dispatch', 'new': 'Deploy'}, {'origin': 'workflow_dispatch', 'new': 'GitHub Actions'}].find(item => item.origin === `${process.env.AS_EVENT_NAME}`).new || `${process.env.AS_EVENT_NAME}`,
+                short: true
+              },
+              {
+                title: 'Repo',
+                value: `${process.env.AS_REPO}`,
+                short: true
+              },
+              {
+                title: 'Execution Time',
+                value: `${process.env.AS_TOOK}`,
+                short: true
+              },
+              {
+                title: 'Workflow',
+                value: `${process.env.AS_WORKFLOW}`,
+                short: true
+              },
+              {
+                title: 'Total Tests',
+                value: (`${{ env.FAILURES }}`.match(/.spec.js/g) || []).length + (`${{ env.PASSED }}`.match(/.spec.ts/g) || []).length,
+                short: true
+              },
+              {
+                title: 'Pull Request',
+                value: `${{ env.PULL_REQUEST_URL }}`,
+                short: false
+              },
+              {
+                title: 'Failures',
+                value: `${{ env.FAILURES }}` === '' ? 'No failures' : `${{ env.FAILURES }}`.match(/.spec.ts/g).length > 10 ? `Too many failures to print. Please go to GitHub to see full list of failures` : '```${{ env.FAILURES }}```'.replace(/ /g, '\n'),
+                short: false
+              }]
+            }]
+          }  
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
