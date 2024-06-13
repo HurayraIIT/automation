@@ -19,7 +19,7 @@ npm install -D @playwright/test@latest
 Usually after Playwright update, browsers need to be updated with command:
 
 ```
-npx playwright install
+npx playwright install --with-deps
 ```
 
 ## Some useful links
