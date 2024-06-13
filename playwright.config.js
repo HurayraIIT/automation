@@ -1,9 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from "@playwright/test";
 import { config } from "dotenv";
-import dns from "dns";
-
-dns.setDefaultResultOrder("ipv4first");
 
 config();
 
@@ -14,14 +11,34 @@ export default defineConfig({
   globalSetup: "global-setup.js",
   fullyParallel: true,
 
-  reporter: [["playwright-json-summary-reporter"],["list"], ["html"]],
+  reporter: process.env.CI
+    ? [
+        [
+          "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
+          {
+            slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
+            sendResults: "always", // "always" , "on-failure", "off"
+            maxNumberOfFailuresToShow: 0,
+            meta: [
+              {
+                key: "Detailed HTML Results",
+                value: "<https://hurayraiit.github.io/automation | 🔗 Click Me!>",
+              },
+            ],
+          },
+        ],
+        ["dot"],
+        ["list"],
+        ["html"],
+      ]
+    : [["dot"], ["list"], ["html"]],
 
   use: {
     baseURL: process.env.WP_BASE_URL,
 
-    screenshot: "only-on-failure",
+    screenshot: "on",
     trace: "retain-on-failure",
-    video: "retain-on-failure",
+    video: "on",
 
     ignoreHTTPSErrors: true,
   },
