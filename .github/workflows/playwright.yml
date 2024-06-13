@@ -17,8 +17,20 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Set up environment variables
+      env:
+        STORESEO_URL: ${{ secrets.STORESEO_URL }}
+        STORESEO_PASSWORD: ${{ secrets.STORESEO_PASSWORD }}
+        WP_BASE_URL: ${{ secrets.WP_BASE_URL }}
+        WP_ADMIN_USERNAME: ${{ secrets.WP_ADMIN_USERNAME }}
+        WP_ADMIN_PASSWORD: ${{ secrets.WP_ADMIN_PASSWORD }}
+        WP_AUTH_STORAGE: ${{ secrets.WP_AUTH_STORAGE }}
+        WP_CUSTOMER_USERNAME: ${{ secrets.WP_CUSTOMER_USERNAME }}
+        WP_CUSTOMER_PASSWORD: ${{ secrets.WP_CUSTOMER_PASSWORD }}
+        WP_CUSTOMER_SESSION: ${{ secrets.WP_CUSTOMER_SESSION }}
+      run: echo "STORESEO_URL=${STORESEO_URL}" >> .env && echo "STORESEO_PASSWORD=${STORESEO_PASSWORD}" >> .env && echo "WP_BASE_URL=${WP_BASE_URL}" >> .env && echo "WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}" >> .env && echo "WP_ADMIN_PASSWORD=${WP_ADMIN_PASSWORD}" >> .env && echo "WP_AUTH_STORAGE=${WP_AUTH_STORAGE}" >> .env && echo "WP_CUSTOMER_USERNAME=${WP_CUSTOMER_USERNAME}" >> .env && echo "WP_CUSTOMER_PASSWORD=${WP_CUSTOMER_PASSWORD}" >> .env && echo "WP_CUSTOMER_SESSION=${WP_CUSTOMER_SESSION}" >> .env
     - name: Run Playwright tests
-      run: npx playwright test --browser=all
+      run: npx playwright test --browser=all --reporter=html
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
